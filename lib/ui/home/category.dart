@@ -9,31 +9,41 @@ class CategoryScreen extends StatefulWidget {
   State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _CategoryScreenState extends State<CategoryScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: TabBar(
-          labelColor: Colors.amber,
-          unselectedLabelColor: Colors.black,
-          indicatorColor: Colors.amber,
-          indicatorSize: TabBarIndicatorSize.label,
-          indicatorWeight: 5.0,
-          tabs: [
-            Tab(
-              text: 'Income',
-            ),
-            Tab(
-              text: 'Expence',
-            ),
-          ],
-        ),
-        body: TabBarView(
-          children: [IncomeScreen(), ExpenseScreen()],
-        ),
-      ),
+    return Column(
+      children: [
+        TabBar(
+            controller: _tabController,
+            labelColor: Colors.blue,
+            indicatorWeight: 2,
+            indicatorSize: TabBarIndicatorSize.label,
+            unselectedLabelColor: Colors.grey,
+            tabs: [
+              Tab(
+                text: 'Income',
+              ),
+              Tab(
+                text: 'Expense',
+              )
+            ]),
+        Expanded(
+          child: TabBarView(
+            children: [IncomeScreen(), ExpenseScreen()],
+            controller: _tabController,
+          ),
+        )
+      ],
     );
   }
 }
