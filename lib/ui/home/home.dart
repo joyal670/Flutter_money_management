@@ -47,13 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         itemCount: 50,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        elevation: 12,
-        highlightElevation: 50,
-        tooltip: 'Add details',
-        child: Text("Add"),
-      ),
     );
   }
 }
