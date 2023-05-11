@@ -29,7 +29,7 @@ class _CategoryScreenState extends State<CategoryScreen>
             indicatorWeight: 2,
             indicatorSize: TabBarIndicatorSize.label,
             unselectedLabelColor: Colors.grey,
-            tabs: [
+            tabs: const [
               Tab(
                 text: 'Income',
               ),
@@ -39,8 +39,8 @@ class _CategoryScreenState extends State<CategoryScreen>
             ]),
         Expanded(
           child: TabBarView(
-            children: [IncomeScreen(), ExpenseScreen()],
             controller: _tabController,
+            children: const [IncomeScreen(), ExpenseScreen()],
           ),
         )
       ],

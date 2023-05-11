@@ -1,5 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
 
 class IncomeScreen extends StatefulWidget {
   const IncomeScreen({super.key});
@@ -11,6 +10,22 @@ class IncomeScreen extends StatefulWidget {
 class _IncomeScreenState extends State<IncomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ListView.separated(
+      itemBuilder: (context, index) {
+        return Card(
+          elevation: 3,
+          child: ListTile(
+            title: Text('text $index'),
+            trailing: IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+          ),
+        );
+      },
+      separatorBuilder: (context, index) {
+        return SizedBox(
+          height: 10,
+        );
+      },
+      itemCount: 10,
+    );
   }
 }
