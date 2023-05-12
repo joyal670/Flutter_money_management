@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:money_management/db/catgeory/category_db.dart';
 import 'package:money_management/models/category/category.dart';
 
 ValueNotifier<CategoryType> selectedCategoryNotifier =
     ValueNotifier(CategoryType.income);
+
+final _textEditingController = TextEditingController();
 
 void showCategory(BuildContext context) async {
   showDialog(
@@ -14,6 +17,7 @@ void showCategory(BuildContext context) async {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                controller: _textEditingController,
                 decoration: const InputDecoration(
                     hintText: 'Enter Category name',
                     border: OutlineInputBorder()),
@@ -24,7 +28,21 @@ void showCategory(BuildContext context) async {
                 title: "Expence", type: CategoryType.expense),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(onPressed: () {}, child: const Text('Add')),
+              child: ElevatedButton(
+                  onPressed: () {
+                    if (_textEditingController.text.isEmpty) {
+                      return;
+                    }
+
+                    final catgeory = CategoryModel(
+                        id: DateTime.now().microsecondsSinceEpoch.toString(),
+                        name: _textEditingController.text,
+                        type: selectedCategoryNotifier.value);
+
+                    categoryDb().insertCategory(catgeory);
+                    Navigator.of(ctx).pop();
+                  },
+                  child: const Text('Add')),
             )
           ],
         );

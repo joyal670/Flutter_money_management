@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:money_management/db/catgeory/category_db.dart';
+import 'package:money_management/models/category/category.dart';
 
 class IncomeScreen extends StatefulWidget {
   const IncomeScreen({super.key});
@@ -10,22 +12,27 @@ class IncomeScreen extends StatefulWidget {
 class _IncomeScreenState extends State<IncomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (context, index) {
-        return Card(
-          elevation: 3,
-          child: ListTile(
-            title: Text('text $index'),
-            trailing: IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-          ),
-        );
-      },
-      separatorBuilder: (context, index) {
-        return SizedBox(
-          height: 10,
-        );
-      },
-      itemCount: 10,
-    );
+    return ValueListenableBuilder(
+        valueListenable: categoryDb().incomeList,
+        builder: (BuildContext ctx, List<CategoryModel> category, Widget? _) {
+          return ListView.separated(
+            itemBuilder: (ctx, index) {
+              return Card(
+                elevation: 3,
+                child: ListTile(
+                  title: Text(category[index].name),
+                  trailing:
+                      IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                ),
+              );
+            },
+            separatorBuilder: (context, index) {
+              return SizedBox(
+                height: 10,
+              );
+            },
+            itemCount: category.length,
+          );
+        });
   }
 }
