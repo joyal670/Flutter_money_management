@@ -21,8 +21,11 @@ class _IncomeScreenState extends State<IncomeScreen> {
                 elevation: 3,
                 child: ListTile(
                   title: Text(category[index].name),
-                  trailing:
-                      IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                  trailing: IconButton(
+                      onPressed: () {
+                        categoryDb.instance.deleteCategory(category[index].id);
+                      },
+                      icon: Icon(Icons.delete)),
                 ),
               );
             },

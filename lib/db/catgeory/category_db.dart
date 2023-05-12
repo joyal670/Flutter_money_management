@@ -9,6 +9,8 @@ abstract class CategoryDBFunctions {
   Future<List<CategoryModel>> getCategory();
 
   Future<void> insertCategory(CategoryModel model);
+
+  Future<void> deleteCategory(String id);
 }
 
 class categoryDb implements CategoryDBFunctions {
@@ -26,7 +28,7 @@ class categoryDb implements CategoryDBFunctions {
   @override
   Future<void> insertCategory(CategoryModel model) async {
     final _catgegory = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);
-    _catgegory.add(model);
+    _catgegory.put(model.id, model);
     refreshUI();
   }
 
@@ -51,5 +53,12 @@ class categoryDb implements CategoryDBFunctions {
 
     incomeList.notifyListeners();
     expenceList.notifyListeners();
+  }
+
+  @override
+  Future<void> deleteCategory(String id) async {
+    final _catgegory = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);
+    await _catgegory.delete(id);
+    refreshUI();
   }
 }
