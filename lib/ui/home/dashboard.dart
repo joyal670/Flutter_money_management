@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:money_management/db/catgeory/category_db.dart';
+import 'package:money_management/models/category/category.dart';
 import 'package:money_management/ui/home/category.dart';
+import 'package:money_management/ui/home/catgeory_popup.dart';
 import 'package:money_management/ui/home/home.dart';
 
 class Dashboard extends StatefulWidget {
@@ -47,6 +50,12 @@ class _DashboardState extends State<Dashboard> {
             print('home');
           } else {
             print('category');
+            // final sample = CategoryModel(
+            //     id: DateTime.now().millisecondsSinceEpoch.toString(),
+            //     name: 'travel',
+            //     type: CategoryType.expense);
+            // categoryDb().insertCategory(sample);
+            showCategory(context);
           }
         },
         elevation: 12,

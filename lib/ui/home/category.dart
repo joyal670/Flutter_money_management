@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_management/db/catgeory/category_db.dart';
 import 'package:money_management/ui/home/expense.dart';
 import 'package:money_management/ui/home/income.dart';
 
@@ -16,6 +17,9 @@ class _CategoryScreenState extends State<CategoryScreen>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+    categoryDb().getCategory().then((value) {
+      print(value.toString());
+    });
     super.initState();
   }
 
