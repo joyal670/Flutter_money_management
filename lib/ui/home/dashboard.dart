@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_management/db/catgeory/category_db.dart';
-import 'package:money_management/db/transations/add_transations.dart';
+import 'package:money_management/ui/home/add_transations.dart';
 import 'package:money_management/models/category/category.dart';
 import 'package:money_management/ui/home/category.dart';
 import 'package:money_management/ui/home/catgeory_popup.dart';
