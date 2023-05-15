@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:money_management/db/transations/add_transations.dart';
 import 'package:money_management/models/category/category.dart';
 import 'package:money_management/ui/home/dashboard.dart';
 
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const Dashboard(),
+      routes: {
+        AddTranscations.routeName: ((context) => const AddTranscations())
+      },
     );
   }
 }
