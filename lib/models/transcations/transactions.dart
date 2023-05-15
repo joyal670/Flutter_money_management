@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:hive_flutter/adapters.dart';
 import 'package:money_management/models/category/category.dart';
 part 'transactions.g.dart';
